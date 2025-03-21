@@ -90,6 +90,9 @@ extern const UIAccessibilityTraits SwitchAccessibilityTrait;
 @property (nonatomic, strong) UIColor *borderBlockColor;
 @property (nonatomic, strong) UIColor *borderBlockEndColor;
 @property (nonatomic, strong) UIColor *borderBlockStartColor;
+@property (nonatomic, strong) UIColor *borderInlineColor;
+@property (nonatomic, strong) UIColor *borderInlineEndColor;
+@property (nonatomic, strong) UIColor *borderInlineStartColor;
 
 /**
  * Border widths.
@@ -101,10 +104,12 @@ extern const UIAccessibilityTraits SwitchAccessibilityTrait;
 @property (nonatomic, assign) CGFloat borderStartWidth;
 @property (nonatomic, assign) CGFloat borderEndWidth;
 @property (nonatomic, assign) CGFloat borderWidth;
-// TODO: Implement logical border width logic
 @property (nonatomic, assign) CGFloat borderBlockWidth;
 @property (nonatomic, assign) CGFloat borderBlockEndWidth;
 @property (nonatomic, assign) CGFloat borderBlockStartWidth;
+@property (nonatomic, assign) CGFloat borderInlineWidth;
+@property (nonatomic, assign) CGFloat borderInlineEndWidth;
+@property (nonatomic, assign) CGFloat borderInlineStartWidth;
 
 /**
  * Border curve.

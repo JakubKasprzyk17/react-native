@@ -465,6 +465,13 @@ public class CSSBackgroundDrawable extends Drawable {
         int colorStart = getBorderColor(Spacing.START);
         int colorEnd = getBorderColor(Spacing.END);
 
+        final boolean isColorStartDefined = isBorderColorDefined(Spacing.START);
+        final boolean isColorEndDefined = isBorderColorDefined(Spacing.END);
+        final boolean isDirectionAwareColorLeftDefined =
+            isRTL ? isColorEndDefined : isColorStartDefined;
+        final boolean isDirectionAwareColorRightDefined =
+            isRTL ? isColorStartDefined : isColorEndDefined;
+
         if (I18nUtil.getInstance().doLeftAndRightSwapInRTL(mContext)) {
           if (!isBorderColorDefined(Spacing.START)) {
             colorStart = colorLeft;
@@ -483,13 +490,6 @@ public class CSSBackgroundDrawable extends Drawable {
           final int directionAwareColorLeft = isRTL ? colorEnd : colorStart;
           final int directionAwareColorRight = isRTL ? colorStart : colorEnd;
 
-          final boolean isColorStartDefined = isBorderColorDefined(Spacing.START);
-          final boolean isColorEndDefined = isBorderColorDefined(Spacing.END);
-          final boolean isDirectionAwareColorLeftDefined =
-              isRTL ? isColorEndDefined : isColorStartDefined;
-          final boolean isDirectionAwareColorRightDefined =
-              isRTL ? isColorStartDefined : isColorEndDefined;
-
           if (isDirectionAwareColorLeftDefined) {
             colorLeft = directionAwareColorLeft;
           }
@@ -497,6 +497,33 @@ public class CSSBackgroundDrawable extends Drawable {
           if (isDirectionAwareColorRightDefined) {
             colorRight = directionAwareColorRight;
           }
+        }
+
+        int colorInline = getBorderColor(Spacing.INLINE);
+        int colorInlineStart = getBorderColor(Spacing.INLINE_START);
+        int colorInlineEnd = getBorderColor(Spacing.INLINE_END);
+        final int directionAwareInlineColorLeft = isRTL ? colorInlineEnd : colorInlineStart;
+        final int directionAwareInlineColorRight = isRTL ? colorInlineStart : colorInlineEnd;
+
+        final boolean isColorInlineDefined = isBorderColorDefined(Spacing.INLINE);
+        final boolean isColorInlineStartDefined = isBorderColorDefined(Spacing.INLINE_START);
+        final boolean isColorInlineEndDefined = isBorderColorDefined(Spacing.INLINE_END);
+
+        final boolean isDirectionAwareColorInlineLeftDefined =
+              isRTL ? isColorInlineEndDefined : isColorInlineStartDefined;
+        final boolean isDirectionAwareColorInlineRightDefined =
+            isRTL ? isColorInlineStartDefined : isColorInlineEndDefined;
+
+        if(isDirectionAwareColorInlineLeftDefined){
+          colorLeft = directionAwareInlineColorLeft;
+        }else if(!isDirectionAwareColorLeftDefined && isColorInlineDefined){
+          colorLeft = colorInline;
+        }
+
+        if(isDirectionAwareColorInlineRightDefined){
+          colorRight = directionAwareInlineColorRight;
+        }else if(!isDirectionAwareColorRightDefined && isColorInlineDefined){
+          colorRight = colorInline;
         }
 
         final RectF outerClipTempRect =

@@ -745,14 +745,17 @@ static CGFloat RCTDefaultIfNegativeTo(CGFloat defaultValue, CGFloat x)
   UIColor *directionAwareBorderRightColor = nil;
 
   if ([[RCTI18nUtil sharedInstance] doLeftAndRightSwapInRTL]) {
-    UIColor *borderStartColor = _borderStartColor ?: _borderLeftColor;
-    UIColor *borderEndColor = _borderEndColor ?: _borderRightColor;
+    UIColor *borderStartColor = _borderInlineStartColor ?: _borderInlineColor ?: _borderStartColor ?: _borderLeftColor;
+    UIColor *borderEndColor = _borderInlineEndColor ?: _borderInlineColor ?: _borderEndColor ?: _borderRightColor;
 
     directionAwareBorderLeftColor = isRTL ? borderEndColor : borderStartColor;
     directionAwareBorderRightColor = isRTL ? borderStartColor : borderEndColor;
   } else {
-    directionAwareBorderLeftColor = (isRTL ? _borderEndColor : _borderStartColor) ?: _borderLeftColor;
-    directionAwareBorderRightColor = (isRTL ? _borderStartColor : _borderEndColor) ?: _borderRightColor;
+    UIColor *borderStartColor = _borderInlineStartColor ?: _borderInlineColor ?: _borderStartColor;
+    UIColor *borderEndColor = _borderInlineEndColor ?: _borderInlineColor ?: _borderEndColor;
+
+    directionAwareBorderLeftColor = (isRTL ? borderEndColor : borderStartColor) ?: _borderLeftColor ?: _borderInlineColor;
+    directionAwareBorderRightColor = (isRTL ? borderStartColor : borderEndColor) ?: _borderRightColor ?: _borderInlineColor;
   }
 
   UIColor *borderColor = _borderColor;
@@ -769,6 +772,13 @@ static CGFloat RCTDefaultIfNegativeTo(CGFloat defaultValue, CGFloat x)
   if (_borderBlockStartColor) {
     borderTopColor = _borderBlockStartColor;
   }
+
+  NSLog(@"borderInlineColor: %@", _borderInlineColor);
+  NSLog(@"borderInlineStartColor: %@", _borderInlineStartColor);
+  NSLog(@"borderInlineEndColor: %@", _borderInlineEndColor);
+  NSLog(@"borderStartColor: %@", directionAwareBorderLeftColor);
+  NSLog(@"borderEndColor: %@", directionAwareBorderRightColor);
+  NSLog(@"borderColor: %@", _borderColor);
 
   borderColor = [borderColor resolvedColorWithTraitCollection:self.traitCollection];
   borderTopColor = [borderTopColor resolvedColorWithTraitCollection:self.traitCollection];
@@ -966,6 +976,7 @@ static void RCTUpdateHoverStyleForView(RCTView *view)
 
 setBorderColor() setBorderColor(Top) setBorderColor(Right) setBorderColor(Bottom) setBorderColor(Left)
     setBorderColor(Start) setBorderColor(End) setBorderColor(Block) setBorderColor(BlockEnd) setBorderColor(BlockStart)
+    setBorderColor(Inline) setBorderColor(InlineEnd) setBorderColor(InlineStart)
 
 #pragma mark - Border Width
 

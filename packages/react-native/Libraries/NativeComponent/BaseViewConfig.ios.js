@@ -262,6 +262,13 @@ const validAttributesForNonEventProps = {
   borderBlockEndWidth: true,
   borderEndColor: {process: require('../StyleSheet/processColor').default},
   borderBlockEndColor: {process: require('../StyleSheet/processColor').default},
+  borderInlineColor: {process: require('../StyleSheet/processColor').default},
+  borderInlineEndColor: {
+    process: require('../StyleSheet/processColor').default,
+  },
+  borderInlineStartColor: {
+    process: require('../StyleSheet/processColor').default,
+  },
 
   borderTopLeftRadius: true,
   borderTopRightRadius: true,

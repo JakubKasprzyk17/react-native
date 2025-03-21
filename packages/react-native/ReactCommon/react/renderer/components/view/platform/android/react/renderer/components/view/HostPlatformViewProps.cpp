@@ -166,22 +166,22 @@ static void updateBorderWidthProps(
     const CascadedBorderWidths& newBorderWidths,
     const CascadedBorderWidths& oldBorderWidths) {
   updateBorderWidthPropValue(
-      result, "borderWidth", newBorderWidths.all, oldBorderWidths.all);
+      result, "borderWidth", newBorderWidths.allEdges, oldBorderWidths.allEdges);
   updateBorderWidthPropValue(
-      result, "borderTopWidth", newBorderWidths.top, oldBorderWidths.top);
+      result, "borderTopWidth", newBorderWidths.topEdge, oldBorderWidths.topEdge);
   updateBorderWidthPropValue(
-      result, "borderLeftWidth", newBorderWidths.left, oldBorderWidths.left);
+      result, "borderLeftWidth", newBorderWidths.leftEdge, oldBorderWidths.leftEdge);
   updateBorderWidthPropValue(
-      result, "borderStartWidth", newBorderWidths.start, oldBorderWidths.start);
+      result, "borderStartWidth", newBorderWidths.startEdge, oldBorderWidths.startEdge);
   updateBorderWidthPropValue(
-      result, "borderEndWidth", newBorderWidths.end, oldBorderWidths.end);
+      result, "borderEndWidth", newBorderWidths.endEdge, oldBorderWidths.endEdge);
   updateBorderWidthPropValue(
-      result, "borderRightWidth", newBorderWidths.right, oldBorderWidths.right);
+      result, "borderRightWidth", newBorderWidths.rightEdge, oldBorderWidths.rightEdge);
   updateBorderWidthPropValue(
       result,
       "borderBottomWidth",
-      newBorderWidths.bottom,
-      oldBorderWidths.bottom);
+      newBorderWidths.bottomEdge,
+      oldBorderWidths.bottomEdge);
 }
 
 static void updateBorderRadiusPropValue(
@@ -274,9 +274,9 @@ static void updateBorderStyleProps(
     folly::dynamic& result,
     const CascadedBorderStyles& newBorderStyle,
     const CascadedBorderStyles& oldBorderStyle) {
-  if (newBorderStyle.all != oldBorderStyle.all) {
-    if (newBorderStyle.all.has_value()) {
-      switch (newBorderStyle.all.value()) {
+  if (newBorderStyle.allEdges != oldBorderStyle.allEdges) {
+    if (newBorderStyle.allEdges.has_value()) {
+      switch (newBorderStyle.allEdges.value()) {
         case BorderStyle::Solid:
           result["borderStyle"] = "solid";
           break;
@@ -308,32 +308,44 @@ static void updateBorderColorsProps(
     const CascadedBorderColors& newBorderColor,
     const CascadedBorderColors& oldBorderColor) {
   updateBorderColorPropValue(
-      result, "borderColor", newBorderColor.all, oldBorderColor.all);
+      result, "borderColor", newBorderColor.allEdges, oldBorderColor.allEdges);
   updateBorderColorPropValue(
-      result, "borderLeftColor", newBorderColor.left, oldBorderColor.left);
+      result, "borderLeftColor", newBorderColor.leftEdge, oldBorderColor.leftEdge);
   updateBorderColorPropValue(
-      result, "borderRightColor", newBorderColor.right, oldBorderColor.right);
+      result, "borderRightColor", newBorderColor.rightEdge, oldBorderColor.rightEdge);
   updateBorderColorPropValue(
-      result, "borderTopColor", newBorderColor.top, oldBorderColor.top);
+      result, "borderTopColor", newBorderColor.topEdge, oldBorderColor.topEdge);
   updateBorderColorPropValue(
       result,
       "borderBottomColor",
-      newBorderColor.bottom,
-      oldBorderColor.bottom);
+      newBorderColor.bottomEdge,
+      oldBorderColor.bottomEdge);
   updateBorderColorPropValue(
-      result, "borderStartColor", newBorderColor.start, oldBorderColor.start);
+      result, "borderStartColor", newBorderColor.startEdge, oldBorderColor.startEdge);
   updateBorderColorPropValue(
-      result, "borderBlockColor", newBorderColor.block, oldBorderColor.block);
+      result, "borderBlockColor", newBorderColor.blockEdges, oldBorderColor.blockEdges);
   updateBorderColorPropValue(
       result,
       "borderBlockEndColor",
-      newBorderColor.blockEnd,
-      oldBorderColor.blockEnd);
+      newBorderColor.blockEndEdge,
+      oldBorderColor.blockEndEdge);
   updateBorderColorPropValue(
       result,
       "borderBlockStartColor",
-      newBorderColor.blockStart,
-      oldBorderColor.blockStart);
+      newBorderColor.blockStartEdge,
+      oldBorderColor.blockStartEdge);
+  updateBorderColorPropValue(
+      result, "borderInlineColor", newBorderColor.inlineEdges, oldBorderColor.inlineEdges);
+  updateBorderColorPropValue(
+      result,
+      "borderInlineEndColor",
+      newBorderColor.inlineEndEdge,
+      oldBorderColor.inlineEndEdge);
+  updateBorderColorPropValue(
+      result,
+      "borderInlineStartColor",
+      newBorderColor.inlineStartEdge,
+      oldBorderColor.inlineStartEdge);
 }
 
 inline static void updateNativeDrawableProp(

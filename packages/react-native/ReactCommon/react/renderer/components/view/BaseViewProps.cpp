@@ -510,19 +510,19 @@ static BorderRadii radiiPercentToPoint(
 
 CascadedBorderWidths BaseViewProps::getBorderWidths() const {
   return CascadedBorderWidths{
-      .left = optionalFloatFromYogaValue(yogaStyle.border(yoga::Edge::Left)),
-      .top = optionalFloatFromYogaValue(yogaStyle.border(yoga::Edge::Top)),
-      .right = optionalFloatFromYogaValue(yogaStyle.border(yoga::Edge::Right)),
-      .bottom =
-          optionalFloatFromYogaValue(yogaStyle.border(yoga::Edge::Bottom)),
-      .start = optionalFloatFromYogaValue(yogaStyle.border(yoga::Edge::Start)),
-      .end = optionalFloatFromYogaValue(yogaStyle.border(yoga::Edge::End)),
-      .horizontal =
-          optionalFloatFromYogaValue(yogaStyle.border(yoga::Edge::Horizontal)),
-      .vertical =
-          optionalFloatFromYogaValue(yogaStyle.border(yoga::Edge::Vertical)),
-      .all = optionalFloatFromYogaValue(yogaStyle.border(yoga::Edge::All)),
-  };
+    .leftEdge = optionalFloatFromYogaValue(yogaStyle.border(yoga::Edge::Left)),
+    .topEdge = optionalFloatFromYogaValue(yogaStyle.border(yoga::Edge::Top)),
+    .rightEdge = optionalFloatFromYogaValue(yogaStyle.border(yoga::Edge::Right)),
+    .bottomEdge =
+        optionalFloatFromYogaValue(yogaStyle.border(yoga::Edge::Bottom)),
+    .startEdge = optionalFloatFromYogaValue(yogaStyle.border(yoga::Edge::Start)),
+    .endEdge = optionalFloatFromYogaValue(yogaStyle.border(yoga::Edge::End)),
+    .horizontalEdges =
+        optionalFloatFromYogaValue(yogaStyle.border(yoga::Edge::Horizontal)),
+    .verticalEdges =
+        optionalFloatFromYogaValue(yogaStyle.border(yoga::Edge::Vertical)),
+    .allEdges = optionalFloatFromYogaValue(yogaStyle.border(yoga::Edge::All)),
+};
 }
 
 BorderMetrics BaseViewProps::resolveBorderMetrics(

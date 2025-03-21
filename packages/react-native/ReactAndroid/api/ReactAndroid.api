@@ -4563,6 +4563,9 @@ public final class com/facebook/react/uimanager/Spacing {
 	public static final field Companion Lcom/facebook/react/uimanager/Spacing$Companion;
 	public static final field END I
 	public static final field HORIZONTAL I
+  public static final field INLINE I
+  public static final field INLINE_END I
+  public static final field INLINE_START I
 	public static final field LEFT I
 	public static final field RIGHT I
 	public static final field START I

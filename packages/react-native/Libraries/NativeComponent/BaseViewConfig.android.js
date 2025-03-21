@@ -365,6 +365,15 @@ const validAttributesForNonEventProps = {
   borderBlockStartColor: {
     process: require('../StyleSheet/processColor').default,
   },
+  borderInlineColor: {
+    process: require('../StyleSheet/processColor').default,
+  },
+  borderInlineEndColor: {
+    process: require('../StyleSheet/processColor').default,
+  },
+  borderInlineStartColor: {
+    process: require('../StyleSheet/processColor').default,
+  },
   focusable: true,
   backfaceVisibility: true,
 };

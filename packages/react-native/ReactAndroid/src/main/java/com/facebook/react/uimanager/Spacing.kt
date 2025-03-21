@@ -54,7 +54,8 @@ public class Spacing(private val defaultValue: Float, private val spacing: Float
           valueFlags and flagsMap[ALL] != 0 ||
               valueFlags and flagsMap[VERTICAL] != 0 ||
               valueFlags and flagsMap[HORIZONTAL] != 0 ||
-              valueFlags and flagsMap[BLOCK] != 0
+              valueFlags and flagsMap[BLOCK] != 0 ||
+              valueFlags and flagsMap[INLINE] != 0
       return true
     }
     return false
@@ -71,7 +72,10 @@ public class Spacing(private val defaultValue: Float, private val spacing: Float
             spacingType == END ||
             spacingType == BLOCK ||
             spacingType == BLOCK_END ||
-            spacingType == BLOCK_START) {
+            spacingType == BLOCK_START ||
+            spacingType == INLINE ||
+            spacingType == INLINE_END ||
+            spacingType == INLINE_START) {
           YogaConstants.UNDEFINED
         } else {
           defaultValue
@@ -169,6 +173,15 @@ public class Spacing(private val defaultValue: Float, private val spacing: Float
     /** Spacing type that represents the block start direction (top). E.g. `marginBlockStart`. */
     public const val BLOCK_START: Int = 11
 
+    /** Spacing type that represents inline directions (start, end). E.g. `marginInline`. */
+    public const val INLINE: Int = 12
+
+    /** Spacing type that represents the inline end direction (end). E.g. `marginInlineEnd`. */
+    public const val INLINE_END: Int = 13
+
+    /** Spacing type that represents the inline start direction (start). E.g. `marginInlineStart`. */
+    public const val INLINE_START: Int = 14
+
     private val flagsMap =
         intArrayOf(
             1, /*LEFT*/
@@ -182,10 +195,16 @@ public class Spacing(private val defaultValue: Float, private val spacing: Float
             256, /*ALL*/
             512, /*BLOCK*/
             1024, /*BLOCK_END*/
-            2048)
+            2048, /*BLOCK_START*/
+            4096, /*INLINE*/
+            8192, /*INLINE_END*/
+            16384 /*INLINE_START*/)
 
     private fun newFullSpacingArray(): FloatArray {
       return floatArrayOf(
+          YogaConstants.UNDEFINED,
+          YogaConstants.UNDEFINED,
+          YogaConstants.UNDEFINED,
           YogaConstants.UNDEFINED,
           YogaConstants.UNDEFINED,
           YogaConstants.UNDEFINED,

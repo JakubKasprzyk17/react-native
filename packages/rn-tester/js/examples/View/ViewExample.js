@@ -1344,6 +1344,42 @@ export default ({
                 </RNTesterText>
               </View>
             </View>
+            <View style={{position: 'relative', height: 50, borderWidth: 1}}>
+              <View
+                style={{
+                  borderInlineColor: '#0000FF',
+                  borderWidth: 5,
+                  position: 'absolute',
+                  top: 10,
+                  bottom: 10,
+                  left: 10,
+                  right: 10,
+                }}>
+                <RNTesterText style={{fontSize: 11}}>
+                  borderBlockColor blue
+                </RNTesterText>
+              </View>
+            </View>
+            <View style={{position: 'relative', height: 65, borderWidth: 1}}>
+              <View
+                style={{
+                  borderInlineEndColor: '#FF0000',
+                  borderInlineStartColor: '#FFFF00',
+                  borderWidth: 5,
+                  position: 'absolute',
+                  top: 10,
+                  bottom: 10,
+                  left: 10,
+                  right: 10,
+                }}>
+                <RNTesterText style={{fontSize: 11}}>
+                  borderBlockStartColor red
+                </RNTesterText>
+                <RNTesterText style={{fontSize: 11}}>
+                  borderBlockEndColor yellow
+                </RNTesterText>
+              </View>
+            </View>
           </View>
         );
       },

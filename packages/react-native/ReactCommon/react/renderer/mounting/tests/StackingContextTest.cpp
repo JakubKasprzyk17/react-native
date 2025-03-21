@@ -273,7 +273,7 @@ TEST_F(StackingContextTest, mostPropsDoNotForceViewsToMaterialize) {
     auto& yogaStyle = props.yogaStyle;
     yogaStyle.setPositionType(yoga::PositionType::Relative);
     props.borderRadii.all = ValueUnit{42, UnitType::Point};
-    props.borderColors.all = blackColor();
+    props.borderColors.allEdges = blackColor();
   });
 
   mutateViewShadowNodeProps_(nodeBD_, [](ViewProps& props) {
